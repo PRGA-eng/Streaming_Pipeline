@@ -1,0 +1,14 @@
+AWS.config.credentials.get(function(err){
+  if (!err) {
+    // Instantiate aws sdk service objects now that the credentials have been updated
+    var docClient = new AWS.DynamoDB.DocumentClient({ region: '<YOUR_REGION>' });
+    var ddbTable = '<YOUR_DYNAMODB_TABLE>';
+    var params = {
+      TableName: ddbTable
+    };
+    docClient.scan(params, function(err, data) {
+      if (err) console.log(err);
+      else console.log(data);
+    });
+  }
+});
